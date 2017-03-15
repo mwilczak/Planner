@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lista biur</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for biuro in biuros %}
+            <tr>
+                <td><a href="{{ path('biuro_show', { 'id': biuro.id }) }}">{{ biuro.id }}</a></td>
+                <td>{{ biuro.name }}</td>
+                <td>{{ biuro.address }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('biuro_show', { 'id': biuro.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('biuro_edit', { 'id': biuro.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+            <a href="{{ path('biuro_new') }}">Create a new biuro</a><br>
+            <a href="/">Wróc</a>
+
+{% endblock %}

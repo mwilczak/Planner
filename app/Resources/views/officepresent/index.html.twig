@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">Lista</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kiedy</th>
+                <th>Kto</th>
+                <th>Gdzie</th>
+                <th>Ulica</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for officePresent in officePresents %}
+            <tr>
+                <td><a href="{{ path('officepresent_show', { 'id': officePresent.id }) }}">{{ officePresent.id }}</a></td>
+                <td>{% if officePresent.date %}{{ officePresent.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ officePresent.persons.name }}</td>
+                <td>{{ officePresent.presents.name }}</td>
+                <td>{{ officePresent.presents.address }}</td>
+
+
+
+                <td></td>
+                <td>
+
+                    <a href="{{ path('officepresent_show', { 'id': officePresent.id }) }}">Pokaż</a> |
+                    {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('officepresent_edit', { 'id': officePresent.id }) }}">Edytuj</a>
+                    {% endif %}
+
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a class="btn btn-success" href="{{ path('officepresent_new') }}">Nowy dzień</a>
+            <a class="btn" href="/">Wróć</a>
+
+{% endblock %}

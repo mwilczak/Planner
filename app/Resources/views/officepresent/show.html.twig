@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Szczegóły</h1>
+    <a class="btn btn-info" href="{{ path('officepresent_index') }}">Wróć do listy</a>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ officePresent.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if officePresent.date %}{{ officePresent.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Imię</th>
+                <td>{{ officePresent.persons.name }}</td>
+            </tr>
+            <tr>
+                <th>Nazwisko</th>
+                <td>{{ officePresent.persons.surname }}</td>
+            </tr>
+            <tr>
+                <th>Biuro</th>
+                <td>{{ officePresent.presents.name }}</td>
+            </tr>
+            <th>Address</th>
+                <td>{{ officePresent.presents.address }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+            <a class="btn btn-default" href="{{ path('officepresent_edit', { 'id': officePresent.id }) }}">Edytuj</a>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="USUŃ">
+            {{ form_end(delete_form) }}
+
+
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    mb_my.example:
+#        class: MB\MyBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
